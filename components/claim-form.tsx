@@ -138,22 +138,24 @@ export function ClaimForm() {
     setIsSubmitting(true)
 
     try {
-      // Convert files to base64 for transmission (or handle separately)
-      const submissionData = {
-        ...formData,
-        files: formData.files.map((file) => ({
-          name: file.name,
-          size: file.size,
-          type: file.type,
-        })),
-      }
+      const submissionData = new FormData();
+
+      // Add all string fields
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key !== 'files') {
+          submissionData.append(key, value as string);
+        }
+      });
+
+      // Add files
+      formData.files.forEach((file) => {
+        submissionData.append('files', file);
+      });
 
       const response = await fetch('/api/submit-claim', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submissionData),
+        // Content-Type header not needed, browser sets it automatically with boundary for FormData
+        body: submissionData,
       })
 
       const result = await response.json()
