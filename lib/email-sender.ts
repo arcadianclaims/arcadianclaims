@@ -1,17 +1,19 @@
 import nodemailer from 'nodemailer';
 
 // Email configuration - these should be set in environment variables
+// Email configuration
+const smtpPort = parseInt(process.env.SMTP_PORT || '587');
 const emailConfig = {
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+  port: smtpPort,
+  secure: process.env.SMTP_SECURE === 'true' || smtpPort === 465, // true for 465, false for other ports
   auth: {
     user: process.env.SMTP_USER || '',
     pass: process.env.SMTP_PASS || '',
   },
   // Additional options for better compatibility
   tls: {
-    rejectUnauthorized: false, // Some providers need this
+    rejectUnauthorized: false, // Helpful for some development environments
   },
 };
 
