@@ -576,6 +576,7 @@ export function ClaimForm() {
                       <option value="virtual-estimate">Virtual Estimate</option>
                       <option value="subrogation-audit">Subrogation Audit</option>
                       <option value="supplement-assist">Supplement Assist</option>
+                      <option value="other">Other</option>
                     </optgroup>
                   </select>
                 </div>
