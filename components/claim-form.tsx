@@ -215,23 +215,17 @@ export function ClaimForm() {
       // Based on previous file content, location was removed from Step 2 JSX but might still be in state
     }
     if (currentStep === 3) {
-      const isEquipment = ["heavy-off-road", "heavy-specialty", "heavy-trailer-tractor", "farm-equipment", "inland-marine", "non-commercial-aircraft", "motor-coach-bus"].includes(formData.appraisalType);
-      const isReview = ["appraisal-clause", "audit", "estimate-review-auto", "estimate-review-other", "photos-only", "photos-scope-only", "virtual-estimate", "subrogation-audit", "supplement-assist"].includes(formData.appraisalType);
-
-      if (!isReview) {
-        if (!formData.year) {
-          toast.error("Please enter year")
-          return false
-        }
-        if (!formData.make) {
-          toast.error("Please enter make")
-          return false
-        }
-        if (!formData.model && !["appraisal-clause", "desk"].includes(formData.appraisalType)) {
-          // logic matches existing required logic
-          toast.error("Please enter model")
-          return false
-        }
+      if (!formData.year) {
+        toast.error("Please enter year")
+        return false
+      }
+      if (!formData.make) {
+        toast.error("Please enter make")
+        return false
+      }
+      if (!formData.model) {
+        toast.error("Please enter model")
+        return false
       }
     }
     return true
@@ -603,123 +597,114 @@ export function ClaimForm() {
                   ? "Equipment Information"
                   : "Vehicle Information"}
               </h3>
-              {["appraisal-clause", "audit", "estimate-review-auto", "estimate-review-other", "photos-only", "photos-scope-only", "virtual-estimate", "subrogation-audit", "supplement-assist"].includes(formData.appraisalType) ? (
-                <p className="text-muted-foreground">
-                  Vehicle/equipment details can be provided in the description or uploaded documents. Click "Next" to
-                  continue.
-                </p>
-              ) : (
-                <>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="year">Year *</Label>
-                      <Input
-                        id="year"
-                        required={!["appraisal-clause", "audit", "estimate-review-auto", "estimate-review-other", "photos-only", "photos-scope-only", "virtual-estimate", "subrogation-audit", "supplement-assist"].includes(formData.appraisalType)}
-                        value={formData.year}
-                        onChange={(e) => updateField("year", e.target.value)}
-                        placeholder="2020"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="make">Make *</Label>
-                      <Input
-                        id="make"
-                        required={!["appraisal-clause", "audit", "estimate-review-auto", "estimate-review-other", "photos-only", "photos-scope-only", "virtual-estimate", "subrogation-audit", "supplement-assist"].includes(formData.appraisalType)}
-                        value={formData.make}
-                        onChange={(e) => updateField("make", e.target.value)}
-                        placeholder="Toyota"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="model">Model *</Label>
-                      <Input
-                        id="model"
-                        required={!["appraisal-clause", "desk"].includes(formData.appraisalType)}
-                        value={formData.model}
-                        onChange={(e) => updateField("model", e.target.value)}
-                        placeholder="Camry"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="vin">VIN/Serial Number</Label>
-                      <Input
-                        id="vin"
-                        value={formData.vin}
-                        onChange={(e) => updateField("vin", e.target.value)}
-                        placeholder="1HGBH41JXMN109186"
-                      />
-                    </div>
-                  </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="year">Year *</Label>
+                  <Input
+                    id="year"
+                    required
+                    value={formData.year}
+                    onChange={(e) => updateField("year", e.target.value)}
+                    placeholder="2020"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="make">Make *</Label>
+                  <Input
+                    id="make"
+                    required
+                    value={formData.make}
+                    onChange={(e) => updateField("make", e.target.value)}
+                    placeholder="Toyota"
+                  />
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="model">Model *</Label>
+                  <Input
+                    id="model"
+                    required
+                    value={formData.model}
+                    onChange={(e) => updateField("model", e.target.value)}
+                    placeholder="Camry"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="vin">VIN/Serial Number</Label>
+                  <Input
+                    id="vin"
+                    value={formData.vin}
+                    onChange={(e) => updateField("vin", e.target.value)}
+                    placeholder="1HGBH41JXMN109186"
+                  />
+                </div>
+              </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="licenseState">License State</Label>
-                      <Input
-                        id="licenseState"
-                        value={formData.licenseState}
-                        onChange={(e) => updateField("licenseState", e.target.value)}
-                        placeholder="GA"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="plateNumber">Plate Number</Label>
-                      <Input
-                        id="plateNumber"
-                        value={formData.plateNumber}
-                        onChange={(e) => updateField("plateNumber", e.target.value)}
-                        placeholder="ABC-1234"
-                      />
-                    </div>
-                  </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="licenseState">License State</Label>
+                  <Input
+                    id="licenseState"
+                    value={formData.licenseState}
+                    onChange={(e) => updateField("licenseState", e.target.value)}
+                    placeholder="GA"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="plateNumber">Plate Number</Label>
+                  <Input
+                    id="plateNumber"
+                    value={formData.plateNumber}
+                    onChange={(e) => updateField("plateNumber", e.target.value)}
+                    placeholder="ABC-1234"
+                  />
+                </div>
+              </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="damageDescription">Damage Description</Label>
-                    <Textarea
-                      id="damageDescription"
-                      value={formData.damageDescription}
-                      onChange={(e) => updateField("damageDescription", e.target.value)}
-                      placeholder="Describe the damage..."
-                      rows={3}
-                    />
-                  </div>
+              <div className="space-y-2">
+                <Label htmlFor="damageDescription">Damage Description</Label>
+                <Textarea
+                  id="damageDescription"
+                  value={formData.damageDescription}
+                  onChange={(e) => updateField("damageDescription", e.target.value)}
+                  placeholder="Describe the damage..."
+                  rows={3}
+                />
+              </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="factsOfLoss">Facts of Loss (FOL)</Label>
-                    <Textarea
-                      id="factsOfLoss"
-                      value={formData.factsOfLoss}
-                      onChange={(e) => updateField("factsOfLoss", e.target.value)}
-                      placeholder="Describe how the loss occurred..."
-                      rows={3}
-                    />
-                  </div>
+              <div className="space-y-2">
+                <Label htmlFor="factsOfLoss">Facts of Loss (FOL)</Label>
+                <Textarea
+                  id="factsOfLoss"
+                  value={formData.factsOfLoss}
+                  onChange={(e) => updateField("factsOfLoss", e.target.value)}
+                  placeholder="Describe how the loss occurred..."
+                  rows={3}
+                />
+              </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="specialInstructions">Special Instructions</Label>
-                    <Textarea
-                      id="specialInstructions"
-                      value={formData.specialInstructions}
-                      onChange={(e) => updateField("specialInstructions", e.target.value)}
-                      placeholder="Instructions for the adjuster..."
-                      rows={3}
-                    />
-                  </div>
+              <div className="space-y-2">
+                <Label htmlFor="specialInstructions">Special Instructions</Label>
+                <Textarea
+                  id="specialInstructions"
+                  value={formData.specialInstructions}
+                  onChange={(e) => updateField("specialInstructions", e.target.value)}
+                  placeholder="Instructions for the adjuster..."
+                  rows={3}
+                />
+              </div>
 
-                  {!["heavy-off-road", "heavy-specialty", "heavy-trailer-tractor", "farm-equipment", "inland-marine", "non-commercial-aircraft", "motor-coach-bus"].includes(formData.appraisalType) && (
-                    <div className="space-y-2">
-                      <Label htmlFor="mileage">Mileage (Optional)</Label>
-                      <Input
-                        id="mileage"
-                        value={formData.mileage}
-                        onChange={(e) => updateField("mileage", e.target.value)}
-                        placeholder="45000"
-                      />
-                    </div>
-                  )}
-                </>
+              {!["heavy-off-road", "heavy-specialty", "heavy-trailer-tractor", "farm-equipment", "inland-marine", "non-commercial-aircraft", "motor-coach-bus"].includes(formData.appraisalType) && (
+                <div className="space-y-2">
+                  <Label htmlFor="mileage">Mileage (Optional)</Label>
+                  <Input
+                    id="mileage"
+                    value={formData.mileage}
+                    onChange={(e) => updateField("mileage", e.target.value)}
+                    placeholder="45000"
+                  />
+                </div>
               )}
             </div>
           )}
