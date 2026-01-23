@@ -122,7 +122,9 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-2">Phone</h3>
-                      <p className="text-muted-foreground">470-948-6221</p>
+                      <a href="tel:4709486221" className="text-muted-foreground hover:text-primary transition-colors">
+                        470-948-6221
+                      </a>
                     </div>
                   </CardContent>
                 </Card>
@@ -134,11 +136,29 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-2">Email</h3>
-                      <p className="text-muted-foreground">newclaims@arcadianclaims.com</p>
+                      <a href="mailto:newclaims@arcadianclaims.com" className="text-muted-foreground hover:text-primary transition-colors">
+                        newclaims@arcadianclaims.com
+                      </a>
                     </div>
                   </CardContent>
                 </Card>
 
+
+                {/* Google Maps Embed */}
+                <Card className="overflow-hidden">
+                  <CardContent className="p-0">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27395.88397843619!2d-86.27012905!3d31.2826541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x889097f1b6a80001%3A0x8e7a7e0d5f5f5f5f!2sOpp%2C%20AL%2036467!5e0!3m2!1sen!2sus!4v1705000000000!5m2!1sen!2sus"
+                      width="100%"
+                      height="250"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Arcadian Claims Location - Opp, AL"
+                    />
+                  </CardContent>
+                </Card>
 
               </div>
             </div>

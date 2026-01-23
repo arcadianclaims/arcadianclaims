@@ -52,8 +52,16 @@ export function Footer() {
             <h4 className="font-semibold">Contact</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>📍 Po Box 113, Opp, AL 36467</li>
-              <li>☎ 470-948-6221</li>
-              <li>✉ newclaims@arcadianclaims.com</li>
+              <li>
+                <a href="tel:4709486221" className="hover:text-primary transition-colors">
+                  ☎ 470-948-6221
+                </a>
+              </li>
+              <li>
+                <a href="mailto:newclaims@arcadianclaims.com" className="hover:text-primary transition-colors">
+                  ✉ newclaims@arcadianclaims.com
+                </a>
+              </li>
             </ul>
           </div>
 

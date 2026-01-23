@@ -13,15 +13,15 @@ export default function HomePage() {
         <BackgroundRippleEffect />
         <div className="container mx-auto px-4 lg:px-8 relative z-10 flex items-center justify-center min-h-[90vh]">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="flex flex-col items-center justify-center text-center">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
+            <div className="flex flex-col items-center justify-center text-center px-2">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
                 Fast, Accurate Appraisals
               </h1>
-              <div className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mt-2 flex items-center justify-center gap-2">
+              <div className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mt-2 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
                 <span className="text-primary">Anywhere,</span>
                 <TypewriterEffect
                   words={[{ text: "Anytime", className: "text-primary" }]}
-                  className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                  className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                   cursorClassName="bg-primary"
                 />
               </div>

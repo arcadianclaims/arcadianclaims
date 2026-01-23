@@ -49,7 +49,7 @@ export default function AboutPage() {
             <Card>
               <CardContent className="p-8">
                 <img
-                  src="/placeholder.svg?height=400&width=600&key=mission"
+                  src="/mission-team.png"
                   alt="Arcadian team mission"
                   className="w-full h-auto rounded-lg"
                 />
@@ -122,7 +122,7 @@ export default function AboutPage() {
             <Card className="md:order-2">
               <CardContent className="p-8">
                 <img
-                  src="/placeholder.svg?height=400&width=600&key=coverage"
+                  src="/nationwide-coverage.png"
                   alt="Nationwide coverage map"
                   className="w-full h-auto rounded-lg"
                 />
